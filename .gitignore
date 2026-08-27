@@ -1,0 +1,100 @@
+# -------------------------
+# Secrets / local settings
+# -------------------------
+.env
+.env.*
+!.env.example
+
+secrets/
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+.venv/
+venv/
+env/
+
+.ipynb_checkpoints/
+
+# -------------------------
+# Java / Flink build output
+# -------------------------
+target/
+build/
+*.class
+*.jar
+
+# Keep connector/runtime JARs if they are intentionally vendored.
+# If that is needed later, add a negation rule for the exact directory.
+
+# -------------------------
+# Docker / runtime state
+# -------------------------
+data/
+runtime/
+tmp/
+temp/
+logs/
+*.log
+*.pid
+
+warehouse/
+checkpoints/
+savepoints/
+flink-checkpoints/
+flink-savepoints/
+spark-events/
+
+# -------------------------
+# Generated simulator / benchmark data
+# -------------------------
+generated-data/
+simulator/output/
+benchmarks/results/raw/
+benchmarks/tmp/
+
+# -------------------------
+# Local BI / monitoring state
+# -------------------------
+superset_home/
+superset.db
+
+observability/grafana/data/
+observability/prometheus/data/
+
+# -------------------------
+# OS files
+# -------------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# -------------------------
+# IDE / editor
+# -------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# -------------------------
+# Miscellaneous
+# -------------------------
+*.bak
+*.tmp
+*.temp
