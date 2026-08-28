@@ -1,5 +1,6 @@
 -- Smoke test: real Iceberg metadata + Parquet on Apache Ozone
 
+SET 'sql-client.execution.result-mode' = 'TABLEAU';
 SET 'execution.runtime-mode' = 'batch';
 
 USE CATALOG lakehouse;
