@@ -25,4 +25,9 @@ RUN apt-get update \
        "https://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-client-runtime/${HADOOP_VERSION}/hadoop-client-runtime-${HADOOP_VERSION}.jar" \
        --output "/opt/flink/lib/hadoop-client-runtime-${HADOOP_VERSION}.jar"
 
+# Enable Flink S3A filesystem for checkpoints/savepoints on Apache Ozone
+RUN mkdir -p /opt/flink/plugins/s3-fs-hadoop \
+    && cp /opt/flink/opt/flink-s3-fs-hadoop-*.jar \
+       /opt/flink/plugins/s3-fs-hadoop/
+
 USER flink

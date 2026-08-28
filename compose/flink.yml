@@ -21,10 +21,25 @@ services:
         jobmanager.bind-host: 0.0.0.0
         rest.address: 0.0.0.0
         rest.bind-address: 0.0.0.0
+
         parallelism.default: 2
+
+        execution.checkpointing.interval: 10s
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.storage: filesystem
+        execution.checkpointing.dir: s3a://flink-state/checkpoints
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+        execution.checkpointing.num-retained: 3
+
+        fs.s3a.endpoint: http://s3.ozone:9878
+        fs.s3a.path.style.access: true
+        fs.s3a.connection.ssl.enabled: false
+        fs.s3a.access.key: lakehouse
+        fs.s3a.secret.key: lakehouse-demo-secret
     volumes:
       - ./flink/config/init.sql:/opt/flink/conf/init.sql:ro
       - ./flink/config/smoke.sql:/opt/flink/conf/smoke.sql:ro
+      - ./flink/jobs:/opt/flink/jobs:ro
     networks:
       - lakehouse_net
     restart: unless-stopped
@@ -40,7 +55,21 @@ services:
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.bind-host: 0.0.0.0
         taskmanager.numberOfTaskSlots: 4
+
         parallelism.default: 2
+
+        execution.checkpointing.interval: 10s
+        execution.checkpointing.mode: EXACTLY_ONCE
+        execution.checkpointing.storage: filesystem
+        execution.checkpointing.dir: s3a://flink-state/checkpoints
+        execution.checkpointing.externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+        execution.checkpointing.num-retained: 3
+
+        fs.s3a.endpoint: http://s3.ozone:9878
+        fs.s3a.path.style.access: true
+        fs.s3a.connection.ssl.enabled: false
+        fs.s3a.access.key: lakehouse
+        fs.s3a.secret.key: lakehouse-demo-secret
     networks:
       - lakehouse_net
     restart: unless-stopped
