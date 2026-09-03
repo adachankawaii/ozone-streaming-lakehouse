@@ -4,4 +4,5 @@ include:
       - ./compose/kafka.yml
       - ./compose/iceberg-rest.yml
       - ./compose/flink.yml
+      - ./compose/simulator.yml
     project_directory: .

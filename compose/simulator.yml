@@ -1,0 +1,17 @@
+services:
+  ami-simulator:
+    build:
+      context: ./simulator/ami
+      dockerfile: Dockerfile
+    image: ozone-lakehouse-ami-simulator:1.0.0
+    profiles:
+      - simulator
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:19092
+      AMI_TOPIC: ami.meter.events
+    networks:
+      - lakehouse_net
+    restart: "no"
